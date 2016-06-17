@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -276,7 +276,7 @@ namespace QCloud.VideoApi.Api
         /// <param name="desc">描述</param>
         /// <param name="magicContext">透传字段，业务设置回调url的话，会把这个字段通过回调url传给业务</param>
         /// <returns></returns>
-        public string UploadFile(string bucketName, string remotePath, string localPath, string videoCover, string bizAttribute = "", string title = "", string desc = "", string magicContext = "")
+        public string UploadFile(string bucketName, string remotePath, string localPath, string videoCover = "", string bizAttribute = "", string title = "", string desc = "", string magicContext = "")
         {
             var url = VIDEOAPI_CGI_URL + appId + "/" + bucketName + EncodeRemotePath(remotePath);
             var sha1 = SHA1.GetSHA1(localPath);
@@ -284,9 +284,9 @@ namespace QCloud.VideoApi.Api
             data.Add("op", "upload");
             data.Add("sha", sha1);
             data.Add("video_cover", videoCover);
-            data.Add("title", title);
-            data.Add("desc", desc);
-            data.Add("magic_context", magicContext);
+            data.Add("video_title", title);
+            data.Add("video_desc", desc);
+            data.Add("magicContext", magicContext);
             data.Add("biz_attr", bizAttribute);
             var expired = DateTime.Now.ToUnixTime() / 1000 + 60;
             var sign = Sign.Signature(appId, secretId, secretKey, expired, bucketName);
@@ -301,6 +301,7 @@ namespace QCloud.VideoApi.Api
         /// <param name="bucketName">bucket名称</param>
         /// <param name="remotePath">远程文件路径</param>
         /// <param name="localPath">本地文件路径</param>
+        /// <param name="videoCover">视频封面Url</param>
         /// <param name="bizAttribute">附加信息</param>
         /// <param name="title">标题</param>
         /// <param name="desc">描述</param>
@@ -319,9 +320,9 @@ namespace QCloud.VideoApi.Api
             data.Add("filesize", fileSize.ToString());
             data.Add("slice_size", sliceSize.ToString());
             data.Add("video_cover", videoCover);
-            data.Add("title", title);
-            data.Add("desc", desc);
-            data.Add("magic_context", magicContext);
+            data.Add("video_title", title);
+            data.Add("video_desc", desc);
+            data.Add("magicContext", magicContext);
             data.Add("biz_attr", bizAttribute);
             var expired = DateTime.Now.ToUnixTime() / 1000 + 60;
             var sign = Sign.Signature(appId, secretId, secretKey, expired, bucketName);
@@ -361,6 +362,7 @@ namespace QCloud.VideoApi.Api
         /// <param name="bucketName">bucket名称</param>
         /// <param name="remotePath">远程文件路径</param>
         /// <param name="localPath">本地文件路径</param>
+        /// <param name="videoCover">视频封面Url</param>
         /// <param name="bizAttribute">附加信息</param>
         /// <param name="title">标题</param>
         /// <param name="desc">描述</param>
