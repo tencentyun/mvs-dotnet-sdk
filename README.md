@@ -1,4 +1,4 @@
-# tencentyun-cos-dotnet-sdk
+# 微视频（Micro Video Service）C# SDK使用说明
 dotnet sdk for [腾讯云微视频服务](http://wiki.qcloud.com/wiki/COS%E4%BA%A7%E5%93%81%E4%BB%8B%E7%BB%8D)
 
 ## 安装（直接下载源码集成）
